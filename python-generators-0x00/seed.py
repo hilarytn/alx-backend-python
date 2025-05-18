@@ -23,7 +23,7 @@ def connect_db():
         connection = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="your_password_here"  # Change to your actual password
+            password="1234xxxxx1234"
         )
         return connection
     except mysql.connector.Error as err:
@@ -46,7 +46,7 @@ def connect_to_prodev():
         connection = mysql.connector.connect(
             host="localhost",
             user="root",
-            password="your_password_here",  # Change to your actual password
+            password="1234xxxxx1234",
             database=DB_NAME
         )
         return connection
