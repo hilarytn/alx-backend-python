@@ -2,7 +2,7 @@ import mysql.connector
 
 def stream_users_in_batches(batch_size):
     """
-    Generator function to stream users in batches from the user_data table
+    Generator that yields batches of users from the user_data table.
     """
     try:
         connection = mysql.connector.connect(
@@ -21,21 +21,17 @@ def stream_users_in_batches(batch_size):
                 yield batch
                 batch = []
 
-        if batch:  # yield remaining rows if any
+        if batch:
             yield batch
 
-    except mysql.connector.Error as err:
-        print(f"Error: {err}")
     finally:
-        if cursor:
-            cursor.close()
-        if connection:
-            connection.close()
+        cursor.close()
+        connection.close()
 
 
 def batch_processing(batch_size):
     """
-    Processes batches and prints users older than 25
+    Processes and prints users over the age of 25 from each batch.
     """
     for batch in stream_users_in_batches(batch_size):
         for user in batch:
